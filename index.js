@@ -20,7 +20,9 @@ app.get("/", (req, res) => {
         .replace(
           /\*\*\[`\^        back to top        \^`\]\(#\)\*\*/g,
           "**[`^ back to top ^`](#awesome-selfhosted)**"
-        );
+        )
+        .replace(/##/g, "#");
+      res.setHeader("content-type", "text/markdown");
       res.send(parsed);
     })
     .catch((error) => {

@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
         .replace(/## Table of contents[\s\S]+?(-----\s)/g, "")
         .replace(
           /\*\*\[`\^        back to top        \^`\]\(#\)\*\*/g,
-          "**[^back to top](#awesome-selfhosted)**"
+          "**[`^ back to top ^`](#awesome-selfhosted)**"
         );
       res.send(parsed);
     })

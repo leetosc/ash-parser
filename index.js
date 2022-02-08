@@ -3,7 +3,7 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5700;
 
 app.use(express.json());
 app.use(cors());
@@ -15,7 +15,12 @@ app.get("/", (req, res) => {
     )
     .then((response) => {
       const text = response.data;
-      const parsed = text.replace(/## Table of contents[\s\S]+?(-----\s)/g, "");
+      const parsed = text
+        .replace(/## Table of contents[\s\S]+?(-----\s)/g, "")
+        .replace(
+          /\*\*\[`\^        back to top        \^`\]\(#\)\*\*/g,
+          "**[^back to top](#awesome-selfhosted)**"
+        );
       res.send(parsed);
     })
     .catch((error) => {
